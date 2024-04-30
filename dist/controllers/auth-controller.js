@@ -26,13 +26,13 @@ let auth = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             console.log(isPasswordValid);
             if (!isPasswordValid) {
                 return res.status(200).json({
-                    status: 'Successful authentication', password: rows[0].password
+                    status: 'Incorrect username or password', password: rows[0].password
                 });
             }
         }
         const token = jsonwebtoken_1.default.sign({ email: email }, "meli", { expiresIn: "24h" });
         return res.status(401).json({
-            status: 'Incorrect username or password',
+            status: 'Correct username or password',
             token
         });
     }

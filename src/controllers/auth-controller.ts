@@ -18,13 +18,14 @@ let auth = async (req: Request, res: Response) => {
            
            if (!isPasswordValid){
             return res.status(200).json({ 
-               status: 'Successful authentication',password: rows[0].password
+               status: 'Incorrect username or password',password: rows[0].password
+               
              });
            }
          }
          const token=jwt.sign({email: email}, "meli", {expiresIn: "24h"})
         return res.status(401).json({ 
-          status: 'Incorrect username or password',
+          status: 'Correct username or password',
           token
         });
       } catch (error) {
